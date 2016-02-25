@@ -1,0 +1,7 @@
+{
+	"require": {
+		"twig/twig": "~1.0",
+		"fpdo/fluentpdo": "dev-master",
+		"ptejada/uflex": "1.*"
+	}
+}
