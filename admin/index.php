@@ -7,3 +7,5 @@
  */
 
 require 'inc/ini.inc.php';
+if ($user->is_loggedin())
+    header('Location: hotels.php');

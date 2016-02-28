@@ -7,11 +7,17 @@
  */
 
 include __DIR__ . '/../../inc/inc.php';
+//use Hotel\Users\Users;
+session_start();
+//setcookie('user_name', 'pembrock@gmail.com', time() + 60*60*24*30, '/');
 
-use ptejada\uFlex;
-$user = new uFlex\User();
+$user = new Users();
+//
+if (!$user->is_loggedin() && $_SERVER['REQUEST_URI'] != '/admin/login.php')
+    header('Location: login.php');
+else {
+    $user_info = $user->getUser();
+    $twig->addGlobal('options', $user_info);
+}
 
-if ($user->isSigned())
-    echo "ok";
-else
-    echo "bad";
+

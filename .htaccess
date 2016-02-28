@@ -2,4 +2,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* index.php [L]
-RewriteRule ^admin/.* admin/index.php [L]
+RewriteCond %{REQUEST_URI} !^/admin/
+#RewriteRule ^admin/.* admin/index.php [L]
+#RewriteRule ^admin/login admin/login.php [L]
