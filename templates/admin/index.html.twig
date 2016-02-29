@@ -87,13 +87,18 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li {% if menu_selected == 'rates_room' %}class="active"{% endif %}><a href=""><i class="fa fa-circle-o"></i> Проживание</a></li>
-                            <li {% if menu_selected == 'rates_service' %}class="active"{% endif %}><a href=""><i class="fa fa-circle-o"></i> Дополнительные услуги</a></li>
+                            <li {% if menu_selected == 'rates_room' %}class="active"{% endif %}><a href="rates_room.php"><i class="fa fa-circle-o"></i> Проживание</a></li>
+                            <li {% if menu_selected == 'rates_service' %}class="active"{% endif %}><a href="rates_service.php"><i class="fa fa-circle-o"></i> Дополнительные услуги</a></li>
                         </ul>
                     </li>
                     <li {% if menu_selected == 'promo' %}class="active"{% endif %}>
-                        <a href="">
+                        <a href="promo.php">
                             <i class="fa fa-thumbs-o-up"></i> <span>Специальные предложения</span>
+                        </a>
+                    </li>
+                    <li {% if menu_selected == 'review' %}class="active"{% endif %}>
+                        <a href="review.php">
+                            <i class="fa fa-book"></i> <span>Отзывы</span>
                         </a>
                     </li>
                     <li class="treeview">
@@ -102,10 +107,10 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="pages/forms/advanced.html"><i class="fa fa-laptop"></i> Основные настройки сайта</a></li>
-                            <li><a href="pages/forms/general.html"><i class="fa fa-user-plus"></i> Пользователи</a></li>
-                            <li><a href="pages/forms/editors.html"><i class="fa fa-key"></i> Роли</a></li>
-                            <li><a href="pages/forms/editors.html"><i class="fa fa-users"></i> Группы пользователей</a></li>
+                            <li><a href="settings.php"><i class="fa fa-laptop"></i> Основные настройки сайта</a></li>
+                            <li><a href="users.php"><i class="fa fa-user-plus"></i> Пользователи</a></li>
+                            <li><a href="role.php"><i class="fa fa-key"></i> Роли</a></li>
+                            <li><a href="groups.php"><i class="fa fa-users"></i> Группы пользователей</a></li>
                         </ul>
                     </li>
                 </ul>

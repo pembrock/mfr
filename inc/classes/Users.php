@@ -14,7 +14,7 @@ class Users
     {
         global $fpdo;
         $query = $fpdo->from('Users')
-                    ->where(array('Email' => $email, 'Password' => $password));
+                    ->where(array('Email' => $email, 'Password' => md5($password)));
         if($query) {
             $row = $query->fetch();
             $_SESSION['user_auth'] = $row['ID'];
