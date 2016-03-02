@@ -20,7 +20,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'add')
     $query = $fpdo->insertInto('hotel2room')->values($values);
     $query->execute();
 
-    header('Location: /admin/hotel2room.php?act=edit&hid=' . $hid . '&rid=' . $rid);
+    header('Location: /admin/hotels.php?edit=' . $hid);
 }
 
 $data = array();
@@ -31,6 +31,11 @@ if (isset($_GET['act']))
         case 'add':
             $data['hid'] = $_GET['hid'];
             $data['type'] = $_GET['act'];
+            break;
+        case 'edit':
+            $data['hid'] = $_GET['hid'];
+            $data['rid'] = $_GET['rid'];
+            break;
     }
 }
 

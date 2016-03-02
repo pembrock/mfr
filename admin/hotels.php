@@ -71,13 +71,19 @@ if (isset($_GET['edit'])){
     $id = intval($_GET['edit']);
     if($id > 0){
         $hotels = $fpdo->from('hotel')->where(array('id' => $id ))->fetch();
+
+        $h2r = $fpdo->from('hotel2room')
+                    ->leftJoin('rooms ON rooms.id = hotel2room.rid')
+                    ->select('rooms.title')
+                    ->where(array('hid' => $id))
+                    ->fetchAll();
         if ($hotels) {
             if (!empty($hotels['logo']) && file_exists('../public/upload/images/logos/' . $hotels['logo']))
                 $hotels['logo'] = '../public/upload/images/logos/' . $hotels['logo'];
             else
                 $hotels['logo'] = NULL;
 
-            echo $twig->render('/admin/hotelEdit.html.twig', array('hotels' => $hotels));
+            echo $twig->render('/admin/hotelEdit.html.twig', array('hotels' => $hotels, 'h2r' => $h2r));
         }
         else
             echo $twig->render('/admin/hotelEdit.html.twig');

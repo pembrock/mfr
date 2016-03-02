@@ -8,10 +8,7 @@
                 <li><a href="hotels.php"><i class="fa fa-home"></i> Гостиницы</a></li>
                 <li class="active">{% if hotels is defined %}{{ hotels.title }}{% else %}Новый отель{% endif %}</li>
             </ol>
-            {#<h3 class="box-title">{% if hotels is defined %}{{ hotels.title }}{% else %}Новый отель{% endif %}</h3>#}
         </div>
-        <!-- /.box-header -->
-        <!-- form start -->
         <form class="form-horizontal" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" id="id" value="{% if hotels is defined %}{{ hotels.id }}{% else %}0{% endif %}">
             <div class="box-body">
@@ -44,53 +41,46 @@
                 </div>
                 {% if hotels is defined %}
                 <div class="form-group">
-
                     <div class="col-sm-2"></div>
-
                     <div class="col-sm-8">
-                    <!-- Map box -->
-                    <div class="box box-solid bg-light-blue-gradient">
+                    <div class="box box-solid">
                         <div class="box-header">
-                            <!-- tools box -->
                             <div class="pull-right box-tools">
-                                <button type="button" class="btn btn-primary btn-sm pull-right" title="Добавить" style="margin-right: 5px;" data-original-title="Развернуть">
-                                    <a href="hotel2room.php?act=add&hid={{ hotels.id }}" style="text-decoration: none;"><i class="fa fa-plus" style="color:white;"></i></a></button>
+                                <a href="hotel2room.php?act=add&hid={{ hotels.id }}" title="Добавить" class="btn btn-success pull-right">
+                                    <i class="fa fa-plus"></i>
+                                </a>
                             </div>
-                            <!-- /. tools -->
-
                             <i class="fa fa-bed"></i>
-
                             <h3 class="box-title">
                                 Категории номеров
                             </h3>
                         </div>
+                        {% if h2r is defined %}
                         <div class="box-body">
                             <table class="table">
+                                {% for value in h2r %}
                                     <tr>
-                                        <td style="width: 10px">1.</td>
-                                        <td>Премиум</td>
+                                        <td style="width: 10px">{{ loop.index }}.</td>
+                                        <td>{{ value.title }}</td>
                                         <td style="width: 10px">
-                                            <a href="hotel2room?act=edit&hid={{ hotels.id }}&rid={{ value.room_id }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
+                                            <a href="hotel2room.php?act=edit&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
                                         </td>
                                         <td style="width: 10px">
-                                            <a href="hotel2room?act=del&hid={{ hotels.id }}&rid={{ value.room_id }}" type="button" class="btn btn-block btn-danger">Удалить</a>
+                                            <a href="hotel2room.php?act=del&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-danger">Удалить</a>
                                         </td>
                                     </tr>
+                                {% endfor %}
                             </table>
                         </div>
-                        <!-- /.box-body-->
+                        {% endif %}
                     </div>
                     </div>
-                    <!-- /.box -->
                 </div>
             {% endif %}
             </div>
-            <!-- /.box-body -->
-            <!-- /.box-footer -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-success" name="save" id="save">Сохранить</button>
             </div>
-
         </form>
     </div>
 {% endblock %}
