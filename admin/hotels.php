@@ -76,6 +76,7 @@ if (isset($_GET['edit'])){
                     ->leftJoin('rooms ON rooms.id = hotel2room.rid')
                     ->select('rooms.title')
                     ->where(array('hid' => $id))
+                    ->orderBy('rooms.orderBy')
                     ->fetchAll();
         if ($hotels) {
             if (!empty($hotels['logo']) && file_exists('../public/upload/images/logos/' . $hotels['logo']))

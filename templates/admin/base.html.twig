@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Hotel-hol. Управление сайтом{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="../../public/bootstrap/css/bootstrap.min.css">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../public/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" href="../../public/plugins/daterangepicker/daterangepicker-bs3.css">
     <link rel="stylesheet" href="../../public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    {#<link rel="stylesheet" href="../../public/plugins/datatables/dataTables.bootstrap.css">#}
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -69,6 +70,10 @@
 {#<script src="../../public/js/pages/dashboard.js"></script>#}
 <!-- AdminLTE for demo purposes -->
 <script src="../../public/js/demo.js"></script>
+
+{#<script src="../../public/plugins/datatables/dataTables.bootstrap.min.js"></script>#}
+{#<script src="../../public/plugins/datatables/jquery.dataTables.min.css"></script>#}
+
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <script>
@@ -76,6 +81,10 @@
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
         CKEDITOR.replace('editor1');
+
+        //Date range picker
+        $('#dateRange').daterangepicker();
+
     });
 </script>
 </body>

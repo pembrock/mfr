@@ -22,9 +22,15 @@ $twig = new Twig_Environment($loader, array(
 ));
 $twig->addExtension(new Twig_Extension_Debug());
 
-$pdo = new PDO("mysql:dbname=". $config['db']['db_name'] , $config['db']['user'], $config['db']['password']);
-$pdo->exec("set names utf8");
-$fpdo = new FluentPDO($pdo);
+try {
+    $pdo = new PDO("mysql:dbname=". $config['db']['db_name'] , $config['db']['user'], $config['db']['password']);
+    $pdo->exec("set names utf8");
+    $fpdo = new FluentPDO($pdo);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
+
+
 
 
 

@@ -7,38 +7,73 @@
  */
 
 require 'inc/ini.inc.php';
+$data = array();
+$rooms = $fpdo->from('rooms')->where('isActive', 1)->orderBy('orderBy')->fetchAll();
+$hid = isset($_GET['hid']) ? intval($_GET['hid']) : 0;
+$rid = isset($_GET['rid']) ? intval($_GET['rid']) : 0;
+$data['hid'] = $hid;
+$data['rid'] = $rid;
+$chainTitle = $fpdo->from('hotel')
+    ->select(null)
+    ->select(array('title'))
+    ->where('id', $hid)
+    ->fetchColumn();
+$data['chain'] = $chainTitle;
 
-if(isset($_POST['type']) && $_POST['type'] == 'add')
+if(isset($_POST['type']))
 {
-    $hid = intval($_POST['id']);
-    $rid = intval($_POST['rid']);
-    $isActive = intval($_POST['isActive']);
-    $cost_hour = intval($_POST['cost_hour']);
-    $cost_day = intval($_POST['cost_day']);
-    $description = $_POST['description'];
-    $values = array('hid' => $hid, 'rid' => $rid, 'description' => $description, 'cost_hour' => $cost_hour, 'cost_day' => $cost_day, 'isActive' => $isActive);
-    $query = $fpdo->insertInto('hotel2room')->values($values);
-    $query->execute();
+    if($_POST['type'] == 'add') {
+        $hid = intval($_POST['id']);
+        $rid = intval($_POST['rid']);
+        $isActive = intval($_POST['isActive']);
+        $cost_hour = intval($_POST['cost_hour']);
+        $cost_day = intval($_POST['cost_day']);
+        $description = $_POST['description'];
+        $query = $fpdo->from('hotel2room')->where(array('hid' => $hid, 'rid' => $rid))->fetchAll();
 
-    header('Location: /admin/hotels.php?edit=' . $hid);
+        if (!empty($query))
+        {
+            $data['hid'] = $hid;
+            $data['error'] = 'Ошибка. Для данной гостиницы уже есть такой номер';
+            echo $twig->render('/admin/hotel2room.html.twig', array('rooms' => $rooms, 'data' => $data));
+            die();
+        }
+        else
+        {
+            $values = array('hid' => $hid, 'rid' => $rid, 'description' => $description, 'cost_hour' => $cost_hour, 'cost_day' => $cost_day, 'isActive' => $isActive);
+            $query = $fpdo->insertInto('hotel2room')->values($values);
+            $query->execute();
+
+            header('Location: /admin/hotels.php?edit=' . $hid);
+        }
+    }
+    elseif ($_POST['type'] == 'edit'){
+
+        echo $twig->render('/admin/hotel2room.html.twig', array('rooms' => $rooms, 'data' => $data));
+    }
+
 }
 
-$data = array();
+
 if (isset($_GET['act']))
 {
-    switch($_GET['act'])
+    $act = $_GET['act'];
+
+    switch($act)
     {
         case 'add':
-            $data['hid'] = $_GET['hid'];
-            $data['type'] = $_GET['act'];
+            $data['type'] = $act;
             break;
         case 'edit':
-            $data['hid'] = $_GET['hid'];
-            $data['rid'] = $_GET['rid'];
+
+            $h2r = $fpdo->from('hotel2room')->where(array('hid' => $hid, 'rid' => $rid))->fetch();
+            $data['h2r'] = $h2r;
             break;
+        case 'del':
+            $query = $fpdo->deleteFrom('hotel2room')->where(array('hid' => $hid, 'rid' => $rid));
+            $query->execute();
+            header('Location: /admin/hotels.php?edit=' . $hid);
     }
+    echo $twig->render('/admin/hotel2room.html.twig', array('rooms' => $rooms, 'data' => $data));
 }
 
-$rooms = $fpdo->from('rooms')->where('isActive', 1)->orderBy('orderBy')->fetchAll();
-
-echo $twig->render('/admin/hotel2room.html.twig', array('rooms' => $rooms, 'data' => $data));
