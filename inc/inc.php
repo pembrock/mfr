@@ -23,7 +23,7 @@ $twig = new Twig_Environment($loader, array(
 $twig->addExtension(new Twig_Extension_Debug());
 
 try {
-    $pdo = new PDO("mysql:dbname=". $config['db']['db_name'] , $config['db']['user'], $config['db']['password']);
+    $pdo = new PDO("mysql:host=" . $config['db']['host'] . ";dbname=". $config['db']['db_name'] , $config['db']['user'], $config['db']['password']);
     $pdo->exec("set names utf8");
     $fpdo = new FluentPDO($pdo);
 } catch (PDOException $e) {

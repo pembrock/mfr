@@ -44,7 +44,7 @@ class Users
         if (isset($_SESSION['user_auth'])) {
             $query = $fpdo->from('Users')
                 ->select(null)
-                ->select(array('Username'))
+                ->select(array('id', 'Username'))
                 ->where(array('id' => $_SESSION['user_auth']));
             return $query->fetch();
         }

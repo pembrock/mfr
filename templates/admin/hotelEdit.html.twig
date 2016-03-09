@@ -46,27 +46,27 @@
                     <div class="box box-solid">
                         <div class="box-header">
                             <div class="pull-right box-tools">
-                                <a href="hotel2room.php?act=add&hid={{ hotels.id }}" title="Добавить" class="btn btn-success pull-right">
+                                <a href="rates2hotel.php?act=add&hid={{ hotels.id }}" title="Добавить" class="btn btn-success pull-right">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-                            <i class="fa fa-bed"></i>
+                            <i class="fa fa-money"></i>
                             <h3 class="box-title">
-                                Категории номеров
+                                Тарифы на проживание
                             </h3>
                         </div>
                         {% if h2r is defined %}
                         <div class="box-body">
                             <table class="table">
-                                {% for value in h2r %}
+                                {% for value in r2h %}
                                     <tr>
                                         <td style="width: 10px">{{ loop.index }}.</td>
                                         <td>{{ value.title }}</td>
                                         <td style="width: 10px">
-                                            <a href="hotel2room.php?act=edit&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
+                                            <a href="room2rates.php?act=edit&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
                                         </td>
                                         <td style="width: 10px">
-                                            <a href="hotel2room.php?act=del&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-danger">Удалить</a>
+                                            <a href="room2rates.php?act=del&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-danger">Удалить</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

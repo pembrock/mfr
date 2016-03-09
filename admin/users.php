@@ -12,52 +12,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
     $id = $_POST['id'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $isActive = isset($_POST['isActive']) ? $_POST['isActive'] : null;
-    if (!empty($_POST['dateRange'])) {
-        $date = explode(' - ', $_POST['dateRange']);
-        $startTs = new \DateTime($date[0] . ' 00:00:00');
-        $stopTs = new \DateTime($date[1] . ' 23:59:59');
-    }
-
-    $set = array('title' => $title, 'description' => $description, 'isActive' => $isActive, 'start_ts' => isset($startTs) ? $startTs->format('Y-m-d H:i:s') : null, 'stop_ts' => isset($stopTs) ? $stopTs->format('Y-m-d H:i:s') : null);
-
+    $Username = $_POST['Username'];
+    $GroupID = $_POST['GroupID'];
+    $Email = $_POST['Email'];
+    $Activated = isset($_POST['Activated']) ? $_POST['Activated'] : null;
+    $Password = $_POST['Password'];
+    $savePass = isset($_POST['savePass']) ? $_POST['savePass'] : null;
+    $set = array('Username' => $Username, 'GroupID' => $GroupID, 'Activated' => $Activated, 'Email' => $Email);
+    if (!empty($Password) && $savePass)
+        $set['Password'] = md5($Password);
     if($id > 0)
-        $query = $fpdo->update('promo')->set($set)->where('id', $id);
+        $query = $fpdo->update('Users')->set($set)->where('ID', $id);
     else {
-        $query = $fpdo->insertInto('promo')->values($set);
+        $query = $fpdo->insertInto('Users')->values($set);
     }
     $query->execute();
     $insert_id = $id > 0 ? $id : $pdo->lastInsertId();
-    if($id == 0){
-        $orderBy = $fpdo->from('promo')->select(null)->select('orderBy')->orderBy('orderBy DESC')->limit(1)->fetch();
-        $query = $fpdo->update('promo')->set(array('orderBy' => $orderBy['orderBy'] + 1))->where('id', $insert_id);
-        $query->execute();
-    }
-    header('Location: /admin/promo.php?edit=' . $insert_id);
+
+    header('Location: /admin/users.php?edit=' . $insert_id);
 }
 
 if (isset($_GET['del'])){
     $id = intval($_GET['del']);
 
-    $query = $fpdo->deleteFrom('promo')->where('id', $id);
+    $query = $fpdo->deleteFrom('Users')->where('ID', $id);
     $query->execute();
 
-    header('Location: /admin/promo.php');
+    header('Location: /admin/users.php');
 }
 if (isset($_GET['edit'])){
     $id = intval($_GET['edit']);
+    $groups = $fpdo->from('groups')->fetchAll();
     if($id > 0){
-        $promo = $fpdo->from('promo')->where(array('id' => $id ))->fetch();
-        if ($promo) {
-            echo $twig->render('/admin/promoEdit.html.twig', array('promo' => $promo));
+        $users = $fpdo->from('Users')->where(array('ID' => $id ))->fetch();
+        if ($users) {
+            echo $twig->render('/admin/usersEdit.html.twig', array('users' => $users, 'groups' => $groups));
         }
         else
-            echo $twig->render('/admin/promoEdit.html.twig');
+            echo $twig->render('/admin/usersEdit.html.twig', array('groups' => $groups));
     }
     else
-        echo $twig->render('/admin/promoEdit.html.twig');
+        echo $twig->render('/admin/usersEdit.html.twig', array('groups' => $groups));
 
 }
 else{
