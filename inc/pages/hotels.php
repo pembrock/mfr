@@ -39,6 +39,7 @@ if(isset($_GET['id'])){
                 $info[$val['id']]['description'] = $inf['description'];
                 $info[$val['id']]['online_link'] = $inf['online_link'];
             }
+            $info[$val['id']]['group'] = $val['rid'];
             $info[$val['id']]['cost_hour'] = $val['cost_hour'];
             $info[$val['id']]['cost_day'] = $val['cost_day'];
             $info[$val['id']]['images'] = $files_list;
