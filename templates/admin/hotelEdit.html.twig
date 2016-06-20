@@ -22,6 +22,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="online_link" class="col-sm-2 control-label">Online бронирование</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="online_link" id="online_link" placeholder="Ссылка на online бронирование" value="{% if hotels is defined %}{{ hotels.online_link }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="description" class="col-sm-2 control-label">Описание</label>
                     <div class="col-sm-6">
                         <textarea name="description" id="editor1" rows="10" cols="80">
@@ -30,53 +36,99 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="logo" class="col-sm-2 control-label">Логотип</label>
+                    <label for="logo" class="col-sm-2 control-label">Изображение</label>
                     <div class="col-sm-8">
                         {% if hotels.logo is not null %}
-                        <div><img src="{{ hotels.logo }}" > </div>
+                        <div><img src="{{ hotels.logo }}" width="300"> </div>
                         <br>
                         {% endif %}
                         <input type="file" name="logo" class="form-control" id="logo">
                     </div>
                 </div>
-                {% if hotels is defined %}
                 <div class="form-group">
-                    <div class="col-sm-2"></div>
+                    <label for="logo" class="col-sm-2 control-label">Фото номера</label>
+
                     <div class="col-sm-8">
-                    <div class="box box-solid">
-                        <div class="box-header">
-                            <div class="pull-right box-tools">
-                                <a href="rates2hotel.php?act=add&hid={{ hotels.id }}" title="Добавить" class="btn btn-success pull-right">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                            <i class="fa fa-money"></i>
-                            <h3 class="box-title">
-                                Тарифы на проживание
-                            </h3>
-                        </div>
-                        {% if h2r is defined %}
-                        <div class="box-body">
-                            <table class="table">
-                                {% for value in r2h %}
-                                    <tr>
-                                        <td style="width: 10px">{{ loop.index }}.</td>
-                                        <td>{{ value.title }}</td>
-                                        <td style="width: 10px">
-                                            <a href="room2rates.php?act=edit&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
-                                        </td>
-                                        <td style="width: 10px">
-                                            <a href="room2rates.php?act=del&hid={{ value.hid }}&rid={{ value.rid }}" type="button" class="btn btn-block btn-danger">Удалить</a>
-                                        </td>
-                                    </tr>
+                        <input type="file" name="files[]" id="filer_input2" multiple="multiple">
+                        <div class="jFiler-items jFiler-row">
+                            <ul class="jFiler-items-list jFiler-items-grid">
+                                {% for value in images %}
+                                    <li class="jFiler-item" data-jfiler-index="0" style="">
+                                        <div class="jFiler-item-container">
+                                            <div class="jFiler-item-inner">
+                                                <div class="jFiler-item-thumb">
+                                                    <div class="jFiler-item-thumb-image">
+                                                        <img src="{{ path }}{{ value }}" draggable="true">
+                                                    </div>
+                                                </div>
+                                                <div class="jFiler-item-assets jFiler-row">
+                                                    <ul class="list-inline pull-left">
+                                                        <li>
+                                                            <div class="jFiler-item-others text-success">
+                                                                <i class="icon-jfi-check-circle"></i> {{ value }}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="list-inline pull-right">
+                                                        <li class="del-img" id="{{ value }}">
+                                                            <a class="icon-jfi-trash jFiler-item-trash-action"></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 {% endfor %}
-                            </table>
+                            </ul>
                         </div>
-                        {% endif %}
-                    </div>
                     </div>
                 </div>
-            {% endif %}
+                <div><a href="rooms2hotels.php?hid={{ hotels.id }}" title="Редактирование номеров" class="btn btn-facebook"><i class="fa fa-bed"> Редаткирование номеров</i> </a></div>
+                <div class="box-header h3">Контактная информация</div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">Контактный телефон</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Номер телефона отеля" value="{% if hotels is defined %}{{ hotels.phone }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone2" class="col-sm-2 control-label">Дополнительный телефон</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="phone2" id="phone2" placeholder="Дополнительный номер телефона" value="{% if hotels is defined %}{{ hotels.phone2 }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">E-mail</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="E-mail" value="{% if hotels is defined %}{{ hotels.email }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Адрес</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Адрес" value="{% if hotels is defined %}{{ hotels.address }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subway" class="col-sm-2 control-label">Метро</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="subway" id="subway" placeholder="Ближайшее метро" value="{% if hotels is defined %}{{ hotels.subway }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="maps_link" class="col-sm-2 control-label">Код карты</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="maps_link" id="maps_link" placeholder="Введите код карты" value="{% if hotels is defined %}{{ hotels.maps_link }}{% endif %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address_description" class="col-sm-2 control-label">Описание</label>
+                    <div class="col-sm-6">
+                        <textarea name="address_description" id="editor2" rows="10" cols="80">
+                            {% if hotels is defined %}{{ hotels.address_description }}{% endif %}
+                        </textarea>
+                    </div>
+                </div>
             </div>
             <div class="box-footer">
                 <button type="submit" class="btn btn-success" name="save" id="save">Сохранить</button>

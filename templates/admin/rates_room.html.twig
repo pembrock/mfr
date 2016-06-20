@@ -11,15 +11,21 @@
             </div>
             <div class="box-body no-padding">
                 <table class="table">
+                    {#<tr>#}
+                        {#<td colspan="3"><a href="rates_tables.php" title="Тарифные таблицы" class="btn btn-facebook"><i class="fa fa-table"> Тарифные таблицы</i> </a></td>#}
+                    {#</tr>#}
                     {% for value in rates %}
                         <tr>
                             <td style="width: 10px">{{ loop.index }}.</td>
                             <td><a href="?edit={{ value.id }}">{{ value.title }}</a></td>
                             <td style="width: 10px">
-                                <a href="?edit={{ value.id }}" type="button" class="btn btn-block btn-primary">Редактировать</a>
+                                <a href="rates_tables.php?tid={{ value.id }}" type="button" class="btn btn-block btn-facebook"><i class="fa fa-table"> Тарифные таблицы</i> </a>
                             </td>
                             <td style="width: 10px">
-                                <a href="?del={{ value.id }}" type="button" class="btn btn-block btn-danger">Удалить</a>
+                                <a href="?edit={{ value.id }}" type="button" class="btn btn-block btn-primary"><i class="fa fa-edit"> Редактировать</i> </a>
+                            </td>
+                            <td style="width: 10px">
+                                <a href="?del={{ value.id }}" type="button" class="btn btn-block btn-danger"><i class="fa fa-trash"> Удалить</i> </a>
                             </td>
                         </tr>
                     {% endfor %}

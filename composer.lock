@@ -4,21 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1bc3d48423e79433904bf33ee1ed5057",
-    "content-hash": "ad5cd9514bb054b6a78c641d07186ba4",
+    "hash": "0061c594e2c03b211b587893e56e3364",
+    "content-hash": "dc282a8c7d615fff8127807747b60af2",
     "packages": [
+        {
+            "name": "eventviva/php-image-resize",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eventviva/php-image-resize.git",
+                "reference": "2ebcfb7fb1e6367b6c801666bba8d7866317c5f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eventviva/php-image-resize/zipball/2ebcfb7fb1e6367b6c801666bba8d7866317c5f7",
+                "reference": "2ebcfb7fb1e6367b6c801666bba8d7866317c5f7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aditya Patadia",
+                    "homepage": "http://aditya.patadia.org/"
+                }
+            ],
+            "description": "PHP class to re-size and scale images",
+            "homepage": "https://github.com/eventviva/php-image-resize",
+            "keywords": [
+                "image",
+                "php",
+                "resize",
+                "scale"
+            ],
+            "time": "2016-03-06 10:06:51"
+        },
         {
             "name": "fpdo/fluentpdo",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fpdo/fluentpdo.git",
-                "reference": "669310efae4adfc54ae08b4f4f5db88a6d1b4d5b"
+                "reference": "db16192f7a70f28193930bdbc6f05880220fe670"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/669310efae4adfc54ae08b4f4f5db88a6d1b4d5b",
-                "reference": "669310efae4adfc54ae08b4f4f5db88a6d1b4d5b",
+                "url": "https://api.github.com/repos/fpdo/fluentpdo/zipball/db16192f7a70f28193930bdbc6f05880220fe670",
+                "reference": "db16192f7a70f28193930bdbc6f05880220fe670",
                 "shasum": ""
             },
             "type": "library",
@@ -45,7 +89,7 @@
                 "dbal",
                 "pdo"
             ],
-            "time": "2016-02-18 19:12:21"
+            "time": "2016-03-30 20:33:43"
         },
         {
             "name": "twig/twig",
@@ -114,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/verot/class.upload.php.git",
-                "reference": "f1c6e3c3d54b42171c4fdb67c8087c553a9e8d07"
+                "reference": "62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/f1c6e3c3d54b42171c4fdb67c8087c553a9e8d07",
-                "reference": "f1c6e3c3d54b42171c4fdb67c8087c553a9e8d07",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b",
+                "reference": "62bc7ec3b18f2a3eb7eb99e4feca843b2481a41b",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +191,7 @@
                 "gd",
                 "upload"
             ],
-            "time": "2016-02-14 22:52:12"
+            "time": "2016-04-11 21:46:02"
         }
     ],
     "packages-dev": [],

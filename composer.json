@@ -2,6 +2,8 @@
 	"require": {
 		"twig/twig": "~1.0",
 		"fpdo/fluentpdo": "dev-master",
-	  	"verot/class.upload.php": "dev-master"
+	  	"verot/class.upload.php": "dev-master",
+	  	"eventviva/php-image-resize": "1.5.*"
 	}
 }
+

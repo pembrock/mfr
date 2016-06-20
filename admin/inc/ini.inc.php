@@ -7,12 +7,15 @@
  */
 
 include __DIR__ . '/../../inc/inc.php';
-//use Hotel\Users\Users;
-session_start();
-//setcookie('user_name', 'pembrock@gmail.com', time() + 60*60*24*30, '/');
 
+session_set_cookie_params(10800);
+session_start();
+$settings_array = $fpdo->from('settings')->fetchAll();
+foreach($settings_array as $key => $val){
+    $settings[$val['sysname']] = $val['value'];
+}
+$twig->addGlobal('settings', $settings);
 $user = new Users();
-//
 if (!$user->is_loggedin() && $_SERVER['REQUEST_URI'] != '/admin/login.php')
     header('Location: login.php');
 else {

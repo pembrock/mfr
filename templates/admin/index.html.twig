@@ -23,7 +23,7 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../../public/img/admin.png" class="user-image" alt="User Image">
+                                <img src="../../public/admin/img/admin.png" class="user-image" alt="User Image">
                                 <span class="hidden-xs">{{ options.Username }}</span>
                             </a>
                             <ul class="dropdown-menu">
@@ -31,7 +31,7 @@
                                 <!-- Menu Body -->
                                 <li class="user-body">
                                     <div class="col-xs-4 text-center">
-                                        <a href="users.php?edit={{ options.id }}">Аккаунт</a>
+                                        <a href="#">Аккаунт</a>
                                     </div>
                                     <div class="col-xs-4 text-center">
                                     </div>
@@ -53,7 +53,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="../../public/img/admin.png" class="img-circle" alt="User Image">
+                        <img src="../../public/admin/img/admin.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{ options.Username }}</p>
@@ -71,7 +71,7 @@
                     </li>
                     <li {% if menu_selected == 'rooms' %}class="active"{% endif %}>
                         <a href="rooms.php">
-                            <i class="fa fa-bed"></i> <span>Номера</span>
+                            <i class="fa fa-bed"></i> <span>Категории номеров</span>
                         </a>
                     </li>
                     <li {% if menu_selected == 'additional' %}class="active"{% endif %}>
@@ -101,13 +101,24 @@
                             <i class="fa fa-book"></i> <span>Отзывы</span>
                         </a>
                     </li>
-                    <li class="treeview {% if menu_selected == 'settings' or menu_selected == 'users' or menu_selected == 'role' or menu_selected == 'groups' %} active{% endif %}">
+                    {#<li {% if menu_selected == 'gallery' %}class="active"{% endif %}>#}
+                        {#<a href="gallery.php">#}
+                            {#<i class="fa fa-photo"></i> <span>Галерея</span>#}
+                        {#</a>#}
+                    {#</li>#}
+                    <li {% if menu_selected == 'info' %}class="active"{% endif %}>
+                        <a href="information.php">
+                            <i class="fa fa-exclamation-circle"></i> <span>Полезная информация</span>
+                        </a>
+                    </li>
+                    <li class="treeview {% if menu_selected == 'settings' or menu_selected == 'users' or menu_selected == 'role' or menu_selected == 'groups' or menu_selected == 'blocks' %} active{% endif %}">
                         <a href="#">
                             <i class="fa fa-cog"></i> <span>Настройки</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
                             <li {% if menu_selected == 'settings' %}class="active"{% endif %}><a href="settings.php"><i class="fa fa-laptop"></i> Основные настройки сайта</a></li>
+                            <li {% if menu_selected == 'blocks' %}class="active"{% endif %}><a href="blocks.php"><i class="fa fa-list"></i> Блоки</a></li>
                             <li {% if menu_selected == 'users' %}class="active"{% endif %}><a href="users.php"><i class="fa fa-user-plus"></i> Пользователи</a></li>
                             <li {% if menu_selected == 'role' %}class="active"{% endif %}><a href="role.php"><i class="fa fa-key"></i> Роли</a></li>
                             <li {% if menu_selected == 'groups' %}class="active"{% endif %}><a href="groups.php"><i class="fa fa-users"></i> Группы пользователей</a></li>
